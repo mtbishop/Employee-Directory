@@ -1,4 +1,9 @@
 #locationFilter {
-    margin-left: 60%;
-    margin-bottom: 1rem;
+    padding-left: 25rem;
+}
+#clearFilters {
+    margin-left: 1rem;
+}
+#alphaFilter {
+    margin-left: 1rem;
 }
