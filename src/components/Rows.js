@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RowsEnColumns({
+function RowsForColumns({
   firstName,
   lastName,
   email,
@@ -30,4 +30,4 @@ function RowsEnColumns({
     </div>
   );
 }
-export default RowsEnColumns;
+export default RowsForColumns;

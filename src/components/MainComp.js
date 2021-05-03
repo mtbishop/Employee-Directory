@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from './Header';
 import Searching from './Searching';
-import RowsEnColumns from './RowsEnColumns';
+import RowsForColumns from './Rows';
+import Table from './Table';
 import './MainComp.css';
 
 
@@ -10,7 +11,8 @@ function MainComp() {
     <div className="fullBody">
       <Header />
       <Searching />
-      <RowsEnColumns />
+      <RowsForColumns />
+      <Table />
     </div>
   );
 }

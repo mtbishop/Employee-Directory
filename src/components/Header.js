@@ -1,8 +1,6 @@
 import React from 'react';
 import './HeaderCSS.css';
 
-
-
 function Header() {
   return (
     <div>
