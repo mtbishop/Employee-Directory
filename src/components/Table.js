@@ -16,9 +16,25 @@ export default class Table extends Component {
     });
   }
 
+  clearFilters = (e) => {
+      e.preventDefault();
+      API.getEmployees().then(({ d }) => {
+        this.setState({ employeeArr: d.results });
+      });
+  };
+
   render() {
     return (
       <div className="container">
+        <form className="form form-inline">
+          <div id="locationFilter" className="form-group">
+              <label className="mr-3">Filter by Location:</label>
+              <input type="text" className="form-control mr-1" placeholder="Enter State Here"></input>
+            <button className="btn btn-primary" onClick={this.clearFilters}>
+              Clear Filters
+            </button>
+          </div>
+        </form>
         <tbody>
           {this.state.employeeArr.map((emp, i) => (
             <Rows
