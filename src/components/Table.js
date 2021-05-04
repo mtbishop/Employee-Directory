@@ -107,22 +107,22 @@ export default class Table extends Component {
                   </th>
                 </tr>
               </thead>
+              <tbody>
+                {this.state.employeeArr.map((emp, i) => (
+                  <Rows
+                    key={i}
+                    firstName={emp.name.first}
+                    lastName={emp.name.last}
+                    email={emp.email}
+                    phone={emp.phone}
+                    location={emp.location.state}
+                    image={emp.picture.small}
+                  />
+                ))}
+              </tbody>
             </table>
           </div>
         </div>
-        <tbody>
-          {this.state.employeeArr.map((emp, i) => (
-            <Rows
-              key={i}
-              firstName={emp.name.first}
-              lastName={emp.name.last}
-              email={emp.email}
-              phone={emp.phone}
-              location={emp.location.state}
-              image={emp.picture.small}
-            />
-          ))}
-        </tbody>
       </>
     );
   }
