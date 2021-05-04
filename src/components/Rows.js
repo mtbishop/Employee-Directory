@@ -1,6 +1,6 @@
 import React from 'react';
 
-function RowsForColumns({
+function Rows({
   firstName,
   lastName,
   email,
@@ -27,4 +27,4 @@ function RowsForColumns({
     </tr>
   );
 }
-export default RowsForColumns;
+export default Rows;
