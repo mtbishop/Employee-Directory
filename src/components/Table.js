@@ -18,14 +18,14 @@ export default class Table extends Component {
 
   clearFilters = (e) => {
     e.preventDefault();
-    API.getEmployees().then(({ d }) => {
-      this.setState({ employeeArr: d.results });
+    API.getEmployees().then(({ data }) => {
+      this.setState({ employeeArr: data.results });
     });
   };
 
   filterAlphabetically = () => {
-    const filtered = this.state.employeeArr.sort((f, l) =>
-      f.name.last > l.name.last ? 1 : l.name.last > f.name.last ? -1 : 0
+    const filtered = this.state.employeeArr.sort((first, last) =>
+      first.name.last > last.name.last ? 1 : last.name.last > first.name.last ? -1 : 0
     );
     this.setState({ employeeArr: filtered });
   };
