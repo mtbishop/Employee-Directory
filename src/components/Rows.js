@@ -4,30 +4,27 @@ function RowsForColumns({
   firstName,
   lastName,
   email,
-  phone,
+  h4hone,
   location,
-  image
+  image,
 }) {
-
   return (
-    <div>
-      <tr>
-        <td>
-          <img alt="" src={image} />
-        </td>
-        <td>
-          <h2>{firstName}</h2>
-        </td>
-        <td>
-          <h2>{lastName}</h2>
-        </td>
-        <td>
-          <h5>{email}</h5>
-          <h5>{phone}</h5>
-          <h5>{location}</h5>
-        </td>
-      </tr>
-    </div>
+    <tr>
+      <td>
+        <img alt="" src={image} />
+      </td>
+      <td>
+        <h4>{firstName}</h4>
+      </td>
+      <td>
+        <h4>{lastName}</h4>
+      </td>
+      <td>
+      <h6>{email}</h6>
+      <h6>{h4hone}</h6>
+      <h6>{location}</h6>
+      </td>
+    </tr>
   );
 }
 export default RowsForColumns;

@@ -3,7 +3,6 @@ import { Component } from 'react';
 import API from '../utils/API';
 import './TableCSS.css';
 import Rows from './Rows';
-import axios from 'axios';
 
 export default class Table extends Component {
   state = {
@@ -31,7 +30,13 @@ export default class Table extends Component {
     this.setState({ employeeArr: filtered });
   };
 
-  render() {
+  filterByState = (empState) => (employee) => {
+    const loc = employee.location.state;
+    return loc.toLowerCase() === empState.toLowerCase();
+  };
+
+  render(props) {
+    console.log(props);
     return (
       <div className="container">
         <form id="filterForm" className="form-inline">
@@ -67,19 +72,18 @@ export default class Table extends Component {
             </button>
           </div>
         </form>
-        <tbody>
+        <>
           {this.state.employeeArr.map((emp, i) => (
-            <Rows
-              key={i}
-              firstName={emp.name.first}
-              lastName={emp.name.last}
-              email={emp.email}
-              phone={emp.phone}
-              location={emp.location.state}
-              image={emp.picture.small}
-            />
+            <tr key={i}>
+              <td>firstName={emp.name.first}</td>
+              <td>lastName={emp.name.last}</td>
+              <td>email={emp.email}</td>
+              <td>phone={emp.phone}</td>
+              <td>location={emp.location.state}</td>
+              <td>image={emp.picture.small}</td>
+            </tr>
           ))}
-        </tbody>
+        </>
       </div>
     );
   }
