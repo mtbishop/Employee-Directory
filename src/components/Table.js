@@ -10,14 +10,14 @@ export default class Table extends Component {
     location: '',
   };
 
-  APICallWasSuccessful() {
-    API.getEmployees().then(({ d }) => {
-      this.setState({ employeeArr: d.results });
+  componentDidMount() {
+    API.getEmployees().then(({ data }) => {
+      this.setState({ employeeArr: data.results });
     });
   }
 
   clearFilters = (e) => {
-    e.prevfault();
+    e.preventDefault();
     API.getEmployees().then(({ d }) => {
       this.setState({ employeeArr: d.results });
     });
@@ -43,11 +43,22 @@ export default class Table extends Component {
     });
   };
 
+  renderUserFilter = (e) => {
+    e.preventDefault();
+    const input = e.target.children[0].children[1].value;
+    const matches = this.state.employeeArr.filter(this.filterByState(input));
+    this.setState({ employeeArr: matches, location: '' });
+  };
+
   render() {
     return (
       <>
         <div className="container">
-          <form id="filterForm" className="form-inline">
+          <form
+            id="filterForm"
+            className="form-inline"
+            onSubmit={this.renderUserFilter}
+          >
             <div className="form-group mb-2">
               <button
                 className="btn btn-primary"
@@ -108,15 +119,15 @@ export default class Table extends Component {
                 </tr>
               </thead>
               <tbody>
-                {this.state.employeeArr.map((emp, i) => (
+                {this.state.employeeArr.map((employee, i) => (
                   <Rows
                     key={i}
-                    firstName={emp.name.first}
-                    lastName={emp.name.last}
-                    email={emp.email}
-                    phone={emp.phone}
-                    location={emp.location.state}
-                    image={emp.picture.small}
+                    firstName={employee.name.first}
+                    lastName={employee.name.last}
+                    email={employee.email}
+                    phone={employee.phone}
+                    location={employee.location.state}
+                    image={employee.picture.medium}
                   />
                 ))}
               </tbody>
