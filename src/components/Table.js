@@ -24,15 +24,16 @@ export default class Table extends Component {
   };
 
   filterAlphabetically = () => {
-    const filtered = this.state.employeeArr.sort((first, last) =>
-      first.name.last > last.name.last ? 1 : last.name.last > first.name.last ? -1 : 0
+    const filtered = this.state.employeeArr.sort((a, b) =>
+      a.name.last > b.name.last ? 1 : b.name.last > a.name.last ? -1 : 0
     );
     this.setState({ employeeArr: filtered });
   };
 
-  filterByState = (empState) => (employee) => {
+  filterByState = (location) => (employee) => {
     const loc = employee.location.state;
-    return loc.toLowerCase() === empState.toLowerCase();
+    console.log(this.state)
+    return loc.toLowerCase() === location.toLowerCase();
   };
 
   onChangeProp = (e) => {
@@ -101,6 +102,9 @@ export default class Table extends Component {
             <table className="table">
               <thead>
                 <tr>
+                  <th>
+                    <p> </p>
+                  </th>
                   <th>
                     <h4>First</h4>
                   </th>
