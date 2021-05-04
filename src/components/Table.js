@@ -35,9 +35,13 @@ export default class Table extends Component {
     return loc.toLowerCase() === empState.toLowerCase();
   };
 
-  onChangeProp = () => {
-    
-  }
+  onChangeProp = (e) => {
+    const value = e.target.value;
+    const name = e.target.name;
+    this.setState({
+      [name]: value,
+    });
+  };
 
   render() {
     return (
