@@ -5,7 +5,7 @@ function Header() {
   return (
     <div>
       <header>
-        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav id="navBar" className="navbar navbar-expand-lg navbar-dark bg-dark">
           <a className="navbar-brand" id="homeLink" href="/">
             Employee Directory
           </a>

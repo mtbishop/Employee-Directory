@@ -7,32 +7,44 @@ import Rows from './Rows';
 export default class Table extends Component {
   state = {
     employeeArr: [],
+    backupArr: [],
     location: '',
+    toggle: true,
   };
 
   componentDidMount() {
     API.getEmployees().then(({ data }) => {
       this.setState({ employeeArr: data.results });
+      this.setState({ backupArr: data.results });
     });
   }
 
   clearFilters = (e) => {
     e.preventDefault();
-    API.getEmployees().then(({ data }) => {
-      this.setState({ employeeArr: data.results });
-    });
+    console.log(this.state.employeeArr);
+    // API.getEmployees().then(({ data }) => {
+    this.setState({ employeeArr: this.state.backupArr });
+    // });
   };
 
-  filterAlphabetically = () => {
-    const filtered = this.state.employeeArr.sort((a, b) =>
-      a.name.last > b.name.last ? 1 : b.name.last > a.name.last ? -1 : 0
+  filterAlphabetically = (e) => {
+    e.preventDefault();
+    const filtered = [...this.state.employeeArr].sort((f, l) =>
+      f.name.last > l.name.last
+        ? this.state.toggle
+          ? 1
+          : -1
+        : l.name.last > f.name.last
+        ? this.state.toggle
+          ? -1
+          : 1
+        : 0
     );
-    this.setState({ employeeArr: filtered });
+    this.setState({ employeeArr: filtered, toggle: !this.state.toggle });
   };
 
   filterByState = (location) => (employee) => {
     const loc = employee.location.state;
-    console.log(this.state)
     return loc.toLowerCase() === location.toLowerCase();
   };
 
@@ -45,9 +57,12 @@ export default class Table extends Component {
   };
 
   renderUserFilter = (e) => {
+    console.log(e);
     e.preventDefault();
-    const input = e.target.children[0].children[1].value;
-    const matches = this.state.employeeArr.filter(this.filterByState(input));
+    const input = this.state.location;
+    const matches = this.state.employeeArr.filter((emp) =>
+      this.filterByState(input)(emp)
+    );
     this.setState({ employeeArr: matches, location: '' });
   };
 
@@ -58,14 +73,14 @@ export default class Table extends Component {
           <form
             id="filterForm"
             className="form-inline"
-            onSubmit={this.renderUserFilter}
+            // onSubmit={this.renderUserFilter}
           >
-            <div className="form-group mb-2">
+            <div className="form-group my-2">
               <button
                 className="btn btn-primary"
                 onClick={this.filterAlphabetically}
               >
-                Sort Alphabetically
+                ↑ Alphabetical Order ↓
               </button>
               <button
                 id="clearFilters"
@@ -76,7 +91,7 @@ export default class Table extends Component {
                 Clear Filters
               </button>
             </div>
-            <div id="locationFilter" className="form-group mb-2">
+            <div id="locationFilter" className="form-group my-2">
               <label className="mr-3">Filter by Location:</label>
               <input
                 type="text"
@@ -91,7 +106,7 @@ export default class Table extends Component {
               <button
                 type="submit"
                 className="btn btn-primary"
-                onClick={this.filterAlphabetically}
+                onClick={this.renderUserFilter}
                 id="searchState"
               >
                 Search
@@ -131,7 +146,7 @@ export default class Table extends Component {
                     email={employee.email}
                     phone={employee.phone}
                     location={employee.location.state}
-                    image={employee.picture.medium}
+                    image={employee.picture.large}
                   />
                 ))}
               </tbody>

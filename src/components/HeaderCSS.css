@@ -1,3 +1,14 @@
 #repLink {
     margin-left: 76%;
 }
+#homeLink {
+    font-size: 30px;
+}
+#navBar {
+    background-color: #6d0a18 !important;
+}
+
+.btn {
+    background-color: #ec0414 !important;
+    border: #ec0414 !important;
+}
