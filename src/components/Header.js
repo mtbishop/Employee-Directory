@@ -9,7 +9,11 @@ function Header() {
           id="navBar"
           className="navbar navbar-expand-lg navbar-dark bg-dark"
         >
-          <a className="navbar-brand" id="homeLink" href="/Employee-Directory/">
+          <a
+            className="navbar-brand"
+            id="homeLink"
+            href="https://mtbishop.github.io/Employee-Directory/"
+          >
             Employee Directory
           </a>
           <a
